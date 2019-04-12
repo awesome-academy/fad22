@@ -10,18 +10,22 @@
         <% end %>
         <li><%= link_to t(".home"), root_path %></li>
         <li><%= link_to t(".product"), products_path %>
-        <li>
-          <%= link_to t(".category"),
-           categories_path if user_signed_in? && current_user.admin? %>
-        </li>
-        <li>
-          <%= link_to t(".order"),
-           admin_orders_path if user_signed_in? && current_user.admin? %>
-        </li>
-        <li>
-          <%= link_to t(".suggestion"),
-           admin_suggestions_path if user_signed_in? && current_user.admin? %>
-        </li>
+        <% if can? :manage, Category %>
+          <li>
+            <%= link_to t(".category"), categories_path %>
+          </li>
+        <% end %>
+        <% if can? :manage, Order %>
+          <li>
+            <%= link_to t(".order"), admin_orders_path %>
+          </li>
+        <% end %>
+        <% if can? :manage, Suggestion %>
+          <li>
+            <%= link_to t(".suggestion"),
+             admin_suggestions_path %>
+          </li>
+        <% end %>
         <% if user_signed_in? %>
             <li>
               <%= link_to t(".users"), users_path if current_user.admin? %>

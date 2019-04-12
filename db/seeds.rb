@@ -1,12 +1,30 @@
-User.create!(name: "Example User", email: "example@railstutorial.org",
-  password: "foobar", password_confirmation: "foobar", role: 1)
+@user = User.new(
+  name: "Admin",
+  email: "example@railstutorial.org",
+  password: "foobar",
+  password_confirmation: "foobar",
+  role: 1,
+  phone_number: "0123456789",
+)
+@user.skip_confirmation!
+@user.save!
 
-99.times do |n|
+50.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
+  phone_number = Faker::PhoneNumber.cell_phone
+  address = Faker::Address.street_address
   password = "password"
-  User.create!(name: name, email: email, password: password,
-    password_confirmation: password)
+  @user = User.new(
+    name: name,
+    email: email,
+    address: address,
+    role: 0,
+    phone_number: phone_number,
+    password: password,
+  )
+  @user.skip_confirmation!
+  @user.save!
 end
 
 Category.create!(name: "Hamberger" )

@@ -1,8 +1,10 @@
 class OrderDetailsController < ApplicationController
+  before_action :authenticate_user!, only: :create
   before_action :load_current_order, only: %i(create update destroy)
   before_action :load_order_detail, only: %i(update destroy)
   before_action :load_order_detail_by_product_id, only: :create
   before_action :check_params_quantity, only: %i(create update)
+  authorize_resource
 
   def create
     if @order_detail.nil?
@@ -39,6 +41,15 @@ class OrderDetailsController < ApplicationController
   end
 
   private
+
+  def authenticate_user!
+    if user_signed_in?
+      super
+    else
+      flash[:danger] = t "devise.failure.unauthenticated"
+      redirect_to new_user_session_path
+    end
+  end
 
   def load_order_detail_by_product_id
     @order_detail = @order.order_details.find_by(product_id:

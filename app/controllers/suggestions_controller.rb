@@ -1,6 +1,6 @@
 class SuggestionsController < ApplicationController
-  include SessionsHelper
-  before_action :logged_in_user, only: %i(new create)
+  before_action :authenticate_user!, only: %i(new create)
+  authorize_resource
 
   def new
     @suggestion = current_user.suggestions.new

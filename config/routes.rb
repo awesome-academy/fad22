@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
     get "/carts/show"
     post "/carts/clear"
-    devise_for :users, controllers: { registrations: 'users/registrations'  }
+    devise_for :users, controllers: { registrations: "users/registrations"  }
     resources :categories, only: %i(show index)
     resources :products, only: %i(index show)
     resources :order_details, only: %i(create update destroy)

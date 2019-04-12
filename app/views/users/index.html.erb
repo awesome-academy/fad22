@@ -1,7 +1,24 @@
 <% provide :title, t(".all_users") %>
 <h1><%= t(".all_users") %></h1>
-<%= will_paginate %>
-<ul class="users">
-  <%= render @users %>
-</ul>
-<%= will_paginate %>
+<div class="container">
+  <div class="row">
+    <%= search_form_for @search, method: :get do |f| %>
+      <div class="col-md-3">
+        <%= f.label :name_cont, "Name:" %>
+        <%= f.search_field :name_cont, class: "form-control" %>
+      </div>
+      <div class="col-md-3">
+        <%= f.label :address_cont, "Address:" %>
+        <%= f.search_field :address_cont, class: "form-control" %>
+      </div>
+      <div class="col-md-1 col-centered">
+        <%= submit_tag "Filter", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+  <%= will_paginate %>
+    <ul class="users">
+      <%= render @users %>
+    </ul>
+  <%= will_paginate %>
+</div>

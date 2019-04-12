@@ -8,13 +8,14 @@
       <span class ="text-warning">&#9733; &#9733; &#9733; &#9733;</span>
     </h4>
     <%= comment.content %>
-    <% if logged_in? && (comment.user_id == current_user.id) %>
       <p><small>
-        <%= link_to "Edit", edit_comment_path(comment), remote: true %> -
-        <%= link_to "Delete", comment_path(comment), method: :delete,
-          remote: true %>
-
+        <% if can? :update, comment %>
+          <%= link_to t(".edit"), edit_comment_path(comment), remote: true %>
+        <% end %>
+        <% if can? :destroy, comment%>
+          <%= link_to t(".delete"), comment_path(comment), method: :delete,
+            remote: true %>
+        <% end %>
       </small></p>
-    <% end %>
   </div>
 </div>

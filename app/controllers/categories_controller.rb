@@ -1,7 +1,6 @@
 class CategoriesController < ApplicationController
-  include UsersHelper
   before_action :load_category, only: :show
-
+  authorize_resource
   def show; end
 
   def index

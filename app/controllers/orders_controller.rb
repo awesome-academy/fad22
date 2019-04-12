@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  authorize_resource
+
   def edit
     @order = Order.find_by id: current_order.id
   end

@@ -1,8 +1,7 @@
 class CommentsController < ApplicationController
   before_action :load_comment, only: %i(destroy edit update)
-  before_action :logged_in_user, only: :create
-  include SessionsHelper
-
+  before_action :authenticate_user!, only: :create
+  authorize_resource
   def create
     @comment = Comment.new comment_params
     respond_to do |format|
@@ -39,6 +38,15 @@ class CommentsController < ApplicationController
   end
 
   private
+
+  def authenticate_user!
+    if user_signed_in?
+      super
+    else
+      flash[:danger] = t "devise.failure.unauthenticated"
+      redirect_to new_user_session_path
+    end
+  end
 
   def load_comment
     @comment = Comment.find_by id: params[:id]
