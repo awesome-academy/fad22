@@ -15,6 +15,7 @@ en:
       home: "Home"
       help: "Help"
       login: "Log in"
+      order: "Order"
     footer:
       about: "About"
       contact: "Contact"
@@ -109,6 +110,28 @@ en:
       destroy:
         user_deleted: "User deleted"
         cant_delete: "Cant delete this user"
+    products:
+      load_product:
+        product_not_found: "Product not found"
+      new:
+        create_product: "Create product"
+      edit:
+        edit_product: "Edit product"
+      form:
+        name: "Name"
+        price: "Price"
+        description: "Description"
+        image: "Image"
+        quantity: "Quantity"
+      create:
+        product_created: "Product has been created"
+      update:
+        product_updated: "Product has been updated"
+        product_deleted: "Product has been deleted"
+      destroy:
+        product_deleted: "Product has been deleted"
+        cant_delete: "Cant delete this product"
+
 
   products:
     index:
@@ -116,3 +139,34 @@ en:
       add: "Add Product"
     load_product:
       product_not_found: "Product not found"
+    show:
+      comment: "Comment"
+
+  carts:
+    cart_row:
+      update: "Update"
+      delete: "Delete"
+    show:
+      clear_cart: "Clear cart"
+
+  comments:
+    create:
+      please_log_in: "Please log in"
+
+  order_details:
+    create:
+      please_log_in: "Please log in"
+    check_params_quantity:
+      greater_quantity: "Your quantity want to buy greater than all we have"
+      product_not_found: "Product not found"
+
+  suggestions:
+    new:
+      title: "Title:"
+      content: "Content"
+      suggest: "Suggest"
+    create:
+      thank_you: "Thank for your suggest"
+  you_sure: "Are you sure"
+  delete: "Delete"
+  edit: "Edit"

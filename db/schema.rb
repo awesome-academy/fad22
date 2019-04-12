@@ -10,20 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190417073404) do
+ActiveRecord::Schema.define(version: 20190503015922) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text "comment"
+    t.text "content"
+    t.integer "rate"
     t.integer "user_id", null: false
-    t.integer "product_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "product_id"
     t.index ["product_id"], name: "index_comments_on_product_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -32,10 +34,10 @@ ActiveRecord::Schema.define(version: 20190417073404) do
     t.decimal "unit_price"
     t.integer "quantity"
     t.decimal "sub_total"
-    t.integer "order_id", null: false
-    t.integer "product_id", null: false
+    t.integer "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "product_id"
     t.index ["order_id"], name: "index_order_details_on_order_id"
     t.index ["product_id"], name: "index_order_details_on_product_id"
   end
@@ -44,7 +46,7 @@ ActiveRecord::Schema.define(version: 20190417073404) do
     t.string "delivery_address"
     t.integer "status", default: 0
     t.decimal "total"
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
@@ -56,6 +58,7 @@ ActiveRecord::Schema.define(version: 20190417073404) do
     t.decimal "price"
     t.integer "quantity"
     t.string "image_link"
+    t.integer "status", default: 0
     t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -63,6 +66,7 @@ ActiveRecord::Schema.define(version: 20190417073404) do
   end
 
   create_table "suggestions", force: :cascade do |t|
+    t.string "title"
     t.text "content"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false

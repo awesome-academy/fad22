@@ -2,11 +2,35 @@
 <h1 class="text-center"><%= t ".heading" %></h1>
 
 <div class="container">
-  <div class = "row" style = "margin-bottom: 15px">
-    <div class="col-md-6">
-      <%= link_to t(".add"), "#",
+
+  <div class = "row bottomspace">
+    <div class="col-md-3">
+      <%= link_to t(".add"), new_admin_product_path,
         class: "btn btn-primary" if logged_in? && current_user.admin? %>
     </div>
+  </div>
+
+  <div class="row">
+    <%= form_tag products_path, method: :get do %>
+      <div class="col-md-3">
+        <%= label_tag :category, "Category:" %>
+        <%= select_tag :category,
+          options_for_select(Category.find_categories(0).map{|c| [c.name, c.id]},
+          selected: params[:category]),
+            {include_blank: "All", class: "form-control"} %>
+      </div>
+      <div class="col-md-3">
+        <%= label_tag :price, "Price:" %>
+        <%= select_tag :price,
+          options_for_select([["1$-300$", "1-300"], ["301$-600$", "301-600"],
+          ["601$-1000$", "601-1000"]], selected: params[:price]),
+          {include_blank: true, class: "form-control"} %>
+      </div>
+      <%= hidden_field_tag :status, value = "normal" %>
+      <div class="col-md-1 col-centered">
+        <%= submit_tag "Filter", class: "btn btn-primary" %>
+      </div>
+    <% end %>
   </div>
 
   <div class="row">
@@ -16,3 +40,8 @@
     <%= will_paginate @products %>
   </div>
 </div>
+<% if logged_in? && current_user.normal? %>
+  <div id="mybutton">
+    <%= link_to "Feedback", new_suggestion_path, class: "feedback" %>
+  </div>
+<% end %>

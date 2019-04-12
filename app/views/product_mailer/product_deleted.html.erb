@@ -1,0 +1,28 @@
+<h1>Hi admin</h1>
+
+<p>
+  You deleted <%= @product.name %> but still have orders with this product.
+</p>
+<% @orders.each do |order| %>
+  <div class="row">
+    <div class="col-md-2">
+      <p><strong>ID:</strong></p>
+      <%= order.id %>
+    </div>
+    <div class="col-md-2">
+      <p><strong>Order at:</strong></p>
+      <%= order.created_at %>
+      </div>
+    <div class="col-md-3">
+      <ul>
+        <% order.order_details.each do |od| %>
+          <li><%= od.product.name %>&nbsp<%= od.quantity %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-md-2">
+      <p><strong>Total:</strong></p>
+      <%= number_to_currency order.total %>
+    </div>
+  </div>
+<% end %>

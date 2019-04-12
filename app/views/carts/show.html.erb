@@ -1,0 +1,17 @@
+<div class="shopping-cart">
+  <div class="container center">
+    <h1><%= t(".your_card") %></h1>
+    <h2><%= link_to t(".back_to_shopping"), products_path %></h2>
+  </div>
+  <%= render "shopping_cart" %>
+  <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-6">
+      <%= link_to t(".check_out"), edit_order_path(current_order),
+        class: "btn btn-success" if current_order.order_details.any? %>
+    </div>
+    <div class="col-md-6 text-right">
+      <%= link_to t(".clear_cart"), carts_clear_path, method: :post,
+        class: "btn btn-danger" if current_order.order_details.any? %>
+    </div>
+  </div>
+</div>
