@@ -1,1 +1,72 @@
-<%= @product.name %>
+<%= provide :button_text, t(".comment") %>
+<div class="container">
+  <div class="card bottomspace">
+    <div class="container-fliud">
+      <div class="wrapper row">
+        <div class="preview col-md-6">
+          <div class="preview-pic tab-content">
+            <div class="tab-pane active" id="pic-1">
+              <%= image_tag(@product.image_link.url, size: "500x400") %>
+            </div>
+          </div>
+        </div>
+        <div class="details col-md-6">
+          <h3 class="product-title text-success">
+            <%= @product.name %>
+          </h3>
+          <div class="rating">
+            <div class="stars">
+              <span class="fa fa-star checked">&#9733;</span>
+              <span class="fa fa-star checked">&#9733;</span>
+              <span class="fa fa-star checked">&#9733;</span>
+              <span class="fa fa-star">&#9733;</span>
+              <span class="fa fa-star">&#9733;</span>
+            </div>
+            <span class="review-no">
+              <%= @product.comments.size %> reviews
+            </span>
+          </div>
+          <p class="product-description">
+            <%= @product.description %>
+          </p>
+          <h4 class="price">Current Price:
+            <span><%= number_to_currency @product.price %></span>
+          </h4>
+
+          <div class="action">
+            <!-- <button class="add-to-cart btn btn-primary" type="button">Add to cart
+            </button> -->
+            <div class="col-md-3">
+              <%= form_for @order_detail, remote: true do |f| %>
+                <%= f.hidden_field :product_id, value: @product.id %>
+                <%= f.hidden_field :quantity, value: 1 %>
+                <%= f.submit "Add to Cart", class: "add-to-cart btn btn-primary" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8 col-md-offset-2">
+    <!-- Hien thi form comment -->
+    <div class = "row">
+      <%= render "comments/form" %>
+    </div>
+    <div class="page-header">
+      <h1>
+        Comments
+      </h1>
+    </div>
+       <!-- Hien thi list comments -->
+    <div class="comments-list" id="list">
+      <% if @comments.any? %>
+        <%= render @comments %>
+      <% end %>
+      <div class="center">
+      <%= will_paginate @comments %>
+      </div>
+    </div>
+  </div>
+</div>

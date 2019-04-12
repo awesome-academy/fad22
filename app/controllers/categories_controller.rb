@@ -6,15 +6,12 @@ class CategoriesController < ApplicationController
 
   def index
     @categories =
-      Category.desc_by_name.paginate page: params[:page],
-        per_page: Settings.per_page.users_index
+      Category.find_categories(0).order_follow_created_at
+              .paginate page: params[:page],
+              per_page: Settings.per_page.users_index
   end
 
   private
-
-  def category_params
-    params.require(:category).permit :name
-  end
 
   def load_category
     @category = Category.find_by id: params[:id]

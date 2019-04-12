@@ -1,0 +1,29 @@
+<%= form_for [:admin, @product] do |f| %>
+  <h1><%= yield(:heading) %></h1>
+  <%= render "shared/error_messages", object: f.object %>
+
+  <%= f.label :name, t(".name") %>
+  <%= f.text_field :name, class: "form-control" %>
+
+  <%= f.label :price, t(".price") %>
+  <%= f.number_field :price, class: "form-control" %>
+
+  <%= f.label :description, t(".description") %>
+  <%= f.text_area :description, class: "form-control" %>
+
+  <%= f.label :image_link, t(".image") %>
+  <span class="picture">
+  <%= f.file_field :image_link, class: "form-control" %>
+  </span>
+
+  <%= f.label :quantity, t(".quantity") %>
+  <%= f.number_field :quantity, class: "form-control" %>
+
+  <%= f.label :category_id, "Category:" %>
+  <%= f.select :category_id, Category.pluck(:name, :id),
+    {include_blank: false, class: "form-control"} %>
+
+  <%= f.hidden_field :status, value: "normal" %>
+
+  <%= f.submit yield(:heading), class: "btn btn-primary" %>
+<% end %>

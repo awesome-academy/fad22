@@ -9,3 +9,14 @@
     </section>
   </aside>
 </div>
+<div class="container">
+  <h4><strong>Orders history:</strong></h4>
+  <% if @orders.blank? %>
+    <p>You have no order</p>
+    <%= link_to "Go to Shopping", products_path %>
+  <% else %>
+    <% @orders.each do |order| %>
+      <%= render "orders/order", order: order %>
+    <% end %>
+  <% end %>
+</div>

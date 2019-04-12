@@ -1,0 +1,13 @@
+<%= form_for @comment, remote: true do |f| %>
+  <div class="form-group">
+    <%= f.label :content, "Content:" %>
+    <%= f.text_area :content, size: "20 x5" %>
+    <%= f.hidden_field :product_id, value: @product.id %>
+    <% if logged_in? %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+    <% end %>
+    <div class ="col-md-12 center">
+      <%= f.submit yield(:button_text), class: "btn btn-primary btnwidth center" %>
+    </div>
+  </div>
+<% end %>

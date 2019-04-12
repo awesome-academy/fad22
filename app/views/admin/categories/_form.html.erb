@@ -4,5 +4,6 @@
   <%= f.label :name, t(".name") %>
   <%= f.text_field :name, class: "form-control" %>
 
+  <%= f.hidden_field :status, value: "normal" %>
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>

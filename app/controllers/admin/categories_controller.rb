@@ -15,21 +15,12 @@ class Admin::CategoriesController < Admin::BaseController
     end
   end
 
-  def destroy
-    if @category.destroy
-      flash[:success] = t ".category_deleted"
-    else
-      flash[:danger] = t ".cant_delete"
-    end
-    redirect_to categories_path
-  end
-
   def edit; end
 
   def update
     if @category.update_attributes category_params
-      flash[:sucess] = t ".category_updated"
-      redirect_to @category
+      @category.products.each(&:deleted!) if @category.deleted?
+      redirect_to categories_path
     else
       render :edit
     end
@@ -38,7 +29,7 @@ class Admin::CategoriesController < Admin::BaseController
   private
 
   def category_params
-    params.require(:category).permit :name
+    params.require(:category).permit :name, :status
   end
 
   def load_category

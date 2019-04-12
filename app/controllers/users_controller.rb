@@ -7,7 +7,9 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def show; end
+  def show
+    @orders = @user.orders.where(status: :delivering)
+  end
 
   def create
     @user = User.new user_params
@@ -32,7 +34,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.desc_by_create_at.paginate page: params[:page],
+    @users = User.order_desc.paginate page: params[:page],
       per_page: Settings.per_page.users_index
   end
 

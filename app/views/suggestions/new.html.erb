@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Users Suggestions</h1>
+  <%= form_for @suggestion do |f| %>
+    <%= f.label :title, t(".title") %>
+    <%= f.text_field :title, class: "form-control" %>
+
+    <%= f.label :content, t(".content") %>
+    <%= f.text_area :content, size: "20x10", class: "form-control" %>
+
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <div class="text-center">
+      <%= f.submit t(".suggest"), class: "btn btn-primary submitwidth" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,32 @@
+<div class="row border_bottom">
+  <div class="col-md-3 text-center">
+    <strong><p>Order at:</p></strong>
+    <p><%= order.created_at %></p>
+  </div>
+  <div class="col-md-4">
+    <ul>
+      <% order.order_details.each do |od| %>
+        <li>
+          <p>
+            <%= od.product.name.truncate 50, separator: " " %>
+          </p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-1 text-center">
+    <strong><p>Total:</p></strong>
+    <p><%= number_to_currency order.total %></p>
+  </div>
+  <div class="col-md-3 text-center">
+    <strong><p>Address:</p></strong>
+    <p><%= order.delivery_address %></p>
+  </div>
+  <div class="col-md-1 margin_top">
+    <%= form_for order do |f|%>
+      <%= f.hidden_field :delivery_address, value: order.delivery_address %>
+      <%= f.hidden_field :status, value: "cancel" %>
+    <%= f.submit "Cancle", class: "btn btn-danger" %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Users suggestion</h1>
+  <% @suggestions.each do |sg| %>
+    <div class="row">
+      <div class="col-md-1">
+        <p><strong>User id:</strong></p>
+        <p><%= sg.user_id %></p>
+      </div>
+      <div class="col-md-2">
+        <p><strong>User name:</strong></p>
+        <p><%= sg.user.name %></p>
+      </div>
+      <div class="col-md-3">
+        <p><strong>Title:</strong></p>
+        <p><%= sg.title %></p>
+      </div>
+      <div class="col-md-4">
+        <p><strong>Content:</strong></p>
+        <p><%= sg.content %></p>
+      </div>
+      <div class="col-md-2">
+        <p><strong>Suggest at:</strong></p>
+        <p><%= sg.created_at %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

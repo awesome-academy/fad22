@@ -1,0 +1,21 @@
+<% if @order_detail.present? && @order_detail.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+    <% @order_detail.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<% if @order_details.size == 0 %>
+  <p class="text-center">
+    There are no items in your shopping cart.
+  </p>
+<% else %>
+  <div class = "cart-row">
+    <% @order_details.each do |order_detail| %>
+      <%= render "carts/cart_row", product: order_detail.product, order_detail: order_detail %>
+    <% end %>
+    <h3>Total: <%= number_to_currency current_order.total %></h3>
+  </div>
+<% end %>
