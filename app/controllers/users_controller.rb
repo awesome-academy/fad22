@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include SessionsHelper
   before_action :load_user, except: %i(new index create)
   before_action :correct_user, only: %i(edit update)
   before_action :logged_in_user, only: %i(index edit update)
@@ -48,13 +49,6 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit :name, :email, :address, :phone_number,
       :password, :password_confirmation
-  end
-
-  def logged_in_user
-    return if logged_in?
-    store_location
-    flash[:danger] = t "users.logged_in_user.please_login"
-    redirect_to login_path
   end
 
   def correct_user

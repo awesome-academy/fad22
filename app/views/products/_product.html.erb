@@ -1,7 +1,7 @@
 <div class="col-md-4">
   <div class="card h-100">
-    <%= link_to image_tag(product.image_link.url, size: "300x200" ,class: "card-img-top"),
-      product %>
+    <%= link_to image_tag(product.image_link.url, size: "300x200",
+      class: "card-img-top"), product %>
     <div class="card-body">
       <h4 class="card-title">
         <%= link_to product.name.
@@ -17,8 +17,22 @@
           truncate(Settings.truncate.description, separator: " ") %>
       </p>
     </div>
+
+    <div class="row bottomspace">
+      <%= form_for @order_detail, remote: true do |f| %>
+        <h4 class="text-right">Unit Price: <span style="color: green"><%= number_to_currency product.price %></span></h4>
+        <div class="input-group inputwidth">
+          <%= f.number_field :quantity, value: 1, class: "form-control", min: 1 %>
+          <div class="input-group-btn">
+            <%= f.hidden_field :product_id, value: product.id %>
+            <%= f.submit "Add to Cart", class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
     <% if logged_in? && current_user.admin? %>
-      <div class="row" style = "margin-bottom: 15px">
+      <div class="row">
         <div class="col-md-4">
           <%= link_to t("edit"), "#", class: "btn btn-success btn-sm" %>
         </div>

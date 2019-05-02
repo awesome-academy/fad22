@@ -116,3 +116,12 @@ en:
       add: "Add Product"
     load_product:
       product_not_found: "Product not found"
+
+  carts:
+    cart_row:
+      update: "Update"
+      delete: "Delete"
+    show:
+      your_card: "Your card"
+      back_to_shopping: "Back to continue shopping"
+      check_out: "Check out"

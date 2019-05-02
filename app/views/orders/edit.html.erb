@@ -1,0 +1,10 @@
+<div class="container">
+  <h2 class="h2">Check out your order</h2>
+  <div class="inputwidth">
+    <%= form_for @order do |f| %>
+      <%= f.label :delivery_address, "Delivery Address:" %>
+      <%= f.text_field :delivery_address, class: "form-control" %>
+      <%= f.hidden_field :status, value: "delivering" %>
+      <%= f.submit "Check out", class: "form-control btn btn-primary" %>
+    <% end %>
+  </div>

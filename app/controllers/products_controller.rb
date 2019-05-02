@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   def index
     @products = Product.desc_by_name.paginate page: params[:page],
       per_page: Settings.per_page.product_index
+    @order_detail = current_order.order_details.new
   end
 
   def show; end

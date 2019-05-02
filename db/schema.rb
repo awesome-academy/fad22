@@ -32,8 +32,9 @@ ActiveRecord::Schema.define(version: 20190417073404) do
     t.decimal "unit_price"
     t.integer "quantity"
     t.decimal "sub_total"
-    t.integer "order_id", null: false
-    t.integer "product_id", null: false
+
+    t.integer "order_id"
+    t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_details_on_order_id"
@@ -44,7 +45,7 @@ ActiveRecord::Schema.define(version: 20190417073404) do
     t.string "delivery_address"
     t.integer "status", default: 0
     t.decimal "total"
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"

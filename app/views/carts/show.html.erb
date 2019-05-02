@@ -1,0 +1,11 @@
+<div class="shopping-cart">
+  <div class="container center">
+    <h1><%= t(".your_card") %></h1>
+    <h2><%= link_to t(".back_to_shopping"), products_path %></h2>
+  </div>
+  <%= render "shopping_cart" %>
+  <div>
+    <%= link_to t(".check_out"), edit_order_path(current_order),
+      class: "btn btn-success" if current_order.order_details.any? %>
+  </div>
+</div>

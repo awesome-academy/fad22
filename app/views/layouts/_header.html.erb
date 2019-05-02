@@ -1,8 +1,13 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     <%= link_to t(".fastfood"), root_path, id: "logo" %>
-    <nav>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="nav navbar-nav navbar-right">
+        <% if logged_in? %>
+          <li class="nav-item">
+           <%= render "layouts/cart_text" %>
+          </li>
+        <% end %>
         <li><%= link_to t(".home"), root_path %></li>
         <li><%= link_to t(".product"), products_path %>
         <li><%= link_to t(".category"), categories_path %></li>
@@ -27,6 +32,6 @@
           <li><%= link_to t(".login"), login_path %></li>
         <% end %>
       </ul>
-    </nav>
+    </div>
   </div>
 </header>
