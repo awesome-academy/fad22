@@ -6,7 +6,7 @@
   <div class = "row bottomspace">
     <div class="col-md-3">
       <%= link_to t(".add"), new_admin_product_path,
-        class: "btn btn-primary" if logged_in? && current_user.admin? %>
+        class: "btn btn-primary" if user_signed_in? && current_user.admin? %>
     </div>
   </div>
 
@@ -40,7 +40,7 @@
     <%= will_paginate @products %>
   </div>
 </div>
-<% if logged_in? && current_user.normal? %>
+<% if user_signed_in? && current_user.normal? %>
   <div id="mybutton">
     <%= link_to "Feedback", new_suggestion_path, class: "feedback" %>
   </div>

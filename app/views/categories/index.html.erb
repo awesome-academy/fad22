@@ -5,7 +5,7 @@
   <%= render @categories %>
 </ul>
 <%= will_paginate %>
-<% if logged_in? && current_user.admin? %>
+<% if user_signed_in? && current_user.admin? %>
   <%= button_to t(".add_category"),
     new_admin_category_path, class: "btn btn-primary btnwidth",
       method: "get" %>

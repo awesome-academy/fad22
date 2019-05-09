@@ -1,8 +1,6 @@
 class ProductsController < ApplicationController
   before_action :load_product, only: :show
 
-  include SessionsHelper
-
   def index
     @products = if filtering_params.blank?
                   Product.find_product(0)
@@ -13,7 +11,7 @@ class ProductsController < ApplicationController
                          .order_by_name.paginate page: params[:page],
                          per_page: 18
                 end
-    @order_detail = current_order.order_details.new if logged_in?
+    @order_detail = current_order.order_details.new if user_signed_in?
   end
 
   def show

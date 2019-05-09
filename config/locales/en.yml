@@ -170,3 +170,13 @@ en:
   you_sure: "Are you sure"
   delete: "Delete"
   edit: "Edit"
+
+  devise:
+    registrations:
+      new:
+        email: "Email"
+      edit:
+        email: "Email"
+        name: "Name"
+        phone_number: "Phone Number"
+        address: "Address"

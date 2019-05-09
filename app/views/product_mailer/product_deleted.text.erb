@@ -1,7 +1,7 @@
 Hi admin
   You deleted <%= @product.name %> but still have orders with this product.
 <% @orders.each do |order| %>
-ID: <%= order.id %>
-Order at: <%= order.created_at %>
-Total: <%= number_to_currency order.total %>
+  ID: <%= order.id %>
+  Order at: <%= order.created_at %>
+  Total: <%= number_to_currency order.total %>
 <% end %>

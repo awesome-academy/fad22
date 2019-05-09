@@ -25,7 +25,9 @@ class Admin::ProductsController < Admin::BaseController
         redirect_to @product
       elsif @product.deleted?
         @orders = find_order_by_product_id(@product.id)
-        ProductMailer.product_deleted(@product, @orders).deliver_now
+        if @orders.present?
+          ProductMailer.product_deleted(@product, @orders).deliver_now
+        end
         flash[:sucess] = t ".product_deleted"
         redirect_to products_path
       end

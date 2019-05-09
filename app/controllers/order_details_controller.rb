@@ -2,10 +2,7 @@ class OrderDetailsController < ApplicationController
   before_action :load_current_order, only: %i(create update destroy)
   before_action :load_order_detail, only: %i(update destroy)
   before_action :load_order_detail_by_product_id, only: :create
-  before_action :logged_in_user, only: :create
   before_action :check_params_quantity, only: %i(create update)
-
-  include SessionsHelper
 
   def create
     if @order_detail.nil?

@@ -13,7 +13,7 @@
           truncate(Settings.truncate.description, separator: " ") %>
       </p>
     </div>
-    <% if logged_in? %>
+    <% if user_signed_in? %>
         <% if current_user.normal? %>
           <div class="row bottomspace">
             <%= form_for @order_detail, remote: true do |f| %>
@@ -51,7 +51,7 @@
         <div class="input-group inputwidth">
           <input type="number" class="form-control" value=1>
           <div class="input-group-btn">
-            <%= link_to "Add to Cart", sessions_new_path,
+            <%= link_to "Add to Cart", new_user_session_path,
               class: "btn btn-primary" %>
           </div>
         </div>
