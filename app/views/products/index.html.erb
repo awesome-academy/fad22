@@ -11,22 +11,22 @@
   </div>
 
   <div class="row">
-    <%= form_tag products_path, method: :get do %>
+    <%= search_form_for @search, method: :get do |f| %>
       <div class="col-md-3">
-        <%= label_tag :category, "Category:" %>
-        <%= select_tag :category,
-          options_for_select(Category.find_categories(0).map{|c| [c.name, c.id]},
-          selected: params[:category]),
-            {include_blank: "All", class: "form-control"} %>
+        <%= f.label :category_id_eq, "Category:" %>
+        <%= f.collection_select :category_id_eq, list_categories, :id, :name,
+        {include_blank: t("choose_category")}, {class: "form-control"} %>
       </div>
       <div class="col-md-3">
-        <%= label_tag :price, "Price:" %>
-        <%= select_tag :price,
-          options_for_select([["1$-300$", "1-300"], ["301$-600$", "301-600"],
-          ["601$-1000$", "601-1000"]], selected: params[:price]),
-          {include_blank: true, class: "form-control"} %>
+        <%= f.label :price_gteq, "Price from:" %>
+        <%= f.number_field :price_gteq, min: 0, class: "form-control",
+          placeholder: "Min" %>
       </div>
-      <%= hidden_field_tag :status, value = "normal" %>
+      <div class="col-md-3">
+        <%= f.label :price_gteq, "To:" %>
+        <%= f.number_field :price_lteq, class: "form-control",
+          placeholder: "Max" %>
+      </div>
       <div class="col-md-1 col-centered">
         <%= submit_tag "Filter", class: "btn btn-primary" %>
       </div>

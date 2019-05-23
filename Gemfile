@@ -20,6 +20,7 @@ gem "mini_magick"
 gem "puma", "3.9.1"
 gem "rails", "5.1.6"
 gem "rails-i18n"
+gem "ransack"
 gem "rubocop", "~> 0.54.0", require: false
 gem "sass-rails", "5.0.6"
 gem "turbolinks", "5.0.1"

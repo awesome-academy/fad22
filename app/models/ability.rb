@@ -14,7 +14,7 @@ class Ability
         comment.user_id != user.id
       end
     elsif user.normal?
-      can [:create, :read, :destroy], Order, user_id: user.id
+      can :manage, Order, user_id: user.id
       cannot :destroy, Order, user_id: user.id, status: :delivered
       can :create, Suggestion
       can :read, Product

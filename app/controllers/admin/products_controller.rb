@@ -21,14 +21,14 @@ class Admin::ProductsController < Admin::BaseController
   def update
     if @product.update_attributes product_params
       if @product.normal?
-        flash[:sucess] = t ".product_updated"
+        flash[:success] = t ".product_updated"
         redirect_to @product
       elsif @product.deleted?
         @orders = find_order_by_product_id(@product.id)
         if @orders.present?
           ProductMailer.product_deleted(@product, @orders).deliver_now
         end
-        flash[:sucess] = t ".product_deleted"
+        flash[:success] = t ".product_deleted"
         redirect_to products_path
       end
     else

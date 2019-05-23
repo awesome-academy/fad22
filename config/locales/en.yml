@@ -152,7 +152,7 @@ en:
 
   comments:
     create:
-      please_log_in: "Please log in"
+      please_login: "Please log in"
     comment:
       edit: "Edit"
       delete: "Delete"

@@ -13,10 +13,12 @@
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   phone_number = Faker::PhoneNumber.cell_phone
+  address = Faker::Address.street_address
   password = "password"
   @user = User.new(
     name: name,
     email: email,
+    address: address,
     role: 0,
     phone_number: phone_number,
     password: password,
